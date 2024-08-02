@@ -47,6 +47,15 @@
     }
 }
 
+@keyframes rotate-full{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @keyframes ease-opacity-in {
     from {
         opacity: 0;
@@ -67,6 +76,14 @@ body {
 body.dark-mode {
     background-color: black;
     color: white;
+}
+
+body.no-transition {
+    transition: none !important;
+}
+
+body.no-transition * {
+    transition: none !important;
 }
 
 .svg-container,
@@ -148,7 +165,7 @@ body.dark-mode .day-header {
     position: absolute;
     height: 10em;
     width: 25em;
-    visibility: hidden;
+    display: none;
 }
 
 .view-my-projects-container {
@@ -199,6 +216,9 @@ body.dark-mode .day-header {
         top: 2em;
         right: 2em;
         left: auto;
+        z-index: 1;
+        transform-origin: center center;
+        animation: rotate-full 60s linear forwards infinite;
     }
 
     .night-header {
@@ -218,7 +238,7 @@ body.dark-mode .day-header {
 
     .view-my-projects-container,
     .view-my-cv-container {
-        visibility: visible;
+        display: inline;
         transform-origin: bottom center;
         opacity: 0;
         animation: ease-opacity-in 2s ease-in forwards;
