@@ -1,9 +1,3 @@
-const darkMode = JSON.parse(localStorage.getItem('darkMode')) || false;
-
-
-    if (darkMode) {
-        document.body.classList.add('dark-mode');
-    }
 document.addEventListener('DOMContentLoaded', function() {
 
     const toggleButtons = document.querySelectorAll('#toggle-dark-mode');
@@ -14,9 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
         });
     });
-});
 
-let resizeTimer;
+    let resizeTimer;
     window.addEventListener("resize", () => {
         document.body.classList.add("no-transition");
         clearTimeout(resizeTimer);
@@ -24,3 +17,5 @@ let resizeTimer;
             document.body.classList.remove("no-transition");
         }, 400);
     });
+});
+
