@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Georgiou</title>
     <link rel="stylesheet" href="main.css">
+    <style>
+        /* Add your dark mode CSS styles here */
+        .dark-mode-temp {
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+    <script>
+        // Apply dark mode immediately based on localStorage
+        (function() {
+            const darkMode = JSON.parse(localStorage.getItem('darkMode')) || false;
+            // Add no-transition class initially
+            document.documentElement.classList.add('no-transition');
+            document.documentElement.classList.add('body-hidden');
+
+            if (darkMode) {
+                document.documentElement.classList.add('dark-mode');
+            }
+
+            // Remove body-hidden class to reveal content after DOMContentLoaded
+            window.addEventListener('DOMContentLoaded', function() {
+                document.documentElement.classList.remove('body-hidden');
+                // Remove no-transition class after revealing content
+                setTimeout(() => {
+                    document.documentElement.classList.remove('no-transition');
+                }, 0);
+            });
+        })();
+    </script>
 </head>
 <body class="no-transition">
     <div class="day-header" id="toggle-dark-mode">

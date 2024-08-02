@@ -65,6 +65,27 @@
     }
 }
 
+.body-hidden {
+    visibility: hidden;
+}
+
+/* Disable transitions initially */
+.no-transition * {
+    transition: none !important;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    transition: .5s ease-in;
+}
+
+html.dark-mode{
+    background-color: black;
+    color: white;
+}
+
 /* General Styles */
 body {
     height: 100%;
@@ -73,16 +94,11 @@ body {
     transition: .5s ease-in;
 }
 
-body.dark-mode {
-    background-color: black;
-    color: white;
-}
-
-body.no-transition {
+html.no-transition {
     transition: none !important;
 }
 
-body.no-transition * {
+html.no-transition * {
     transition: none !important;
 }
 
@@ -105,10 +121,10 @@ body.no-transition * {
 }
 
 /* Specific Element Styles */
-body.dark-mode .svg-container > svg > path,
-body.dark-mode .sub-header-container svg path,
-body.dark-mode .view-my-projects-container path,
-body.dark-mode .view-my-cv-container path {
+html.dark-mode .svg-container > svg > path,
+html.dark-mode .sub-header-container svg path,
+html.dark-mode .view-my-projects-container path,
+html.dark-mode .view-my-cv-container path {
     fill: white;
     stroke: white;
 }
@@ -118,7 +134,7 @@ body.dark-mode .view-my-cv-container path {
     text-align: left;
     position: absolute;
     top: 1em;
-    transition: .5s ease-in;
+    transition: 1.5s ease-in;
 }
 
 .day-header {
@@ -131,12 +147,12 @@ body.dark-mode .view-my-cv-container path {
     right: 1em;
 }
 
-body.dark-mode .night-header {
+html.dark-mode .night-header {
     visibility: visible;
     opacity: 1;
 }
 
-body.dark-mode .day-header {
+html.dark-mode .day-header {
     visibility: hidden;
     opacity: 0;
 }
