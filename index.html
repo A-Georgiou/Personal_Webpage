@@ -6,6 +6,13 @@
     <title>Andrew Georgiou</title>
     <link rel="stylesheet" href="main.css">
     <script>
+        function removeClassList(){
+            document.documentElement.classList.remove('body-hidden');
+                setTimeout(() => {
+                    document.documentElement.classList.remove('no-transition');
+                }, 0);
+        }
+
         // Apply dark mode immediately based on localStorage
         (function() {
             const darkMode = JSON.parse(localStorage.getItem('darkMode')) || false;
@@ -16,13 +23,13 @@
                 document.documentElement.classList.add('dark-mode');
             }
 
-            // Remove body-hidden class to reveal content after DOMContentLoaded
-            window.addEventListener('DOMContentLoaded', function() {
-                document.documentElement.classList.remove('body-hidden');
-                setTimeout(() => {
-                    document.documentElement.classList.remove('no-transition');
-                }, 0);
+            if (document.readyState !== 'loading'){
+                removeClassList();
+            }else{
+                window.addEventListener('DOMContentLoaded', function() {
+                removeClassList();
             });
+            }
         })();
     </script>
 </head>

@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-
+function AddDarkModeToggle(){
     const toggleButtons = document.querySelectorAll('#toggle-dark-mode');
     toggleButtons.forEach(div => {
         div.addEventListener('click', function() {
@@ -8,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
         });
     });
+}
 
+function HandleResizesListener(){
     let resizeTimer;
     window.addEventListener("resize", () => {
         document.body.classList.add("no-transition");
@@ -17,5 +18,17 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove("no-transition");
         }, 400);
     });
-});
+}
+
+if (document.readyState !== 'loading') {
+    AddDarkModeToggle();
+    HandleResizesListener();
+}else{
+    document.addEventListener('DOMContentLoaded', function() {
+        AddDarkModeToggle();
+        HandleResizesListener();
+    });
+}
+
+
 
