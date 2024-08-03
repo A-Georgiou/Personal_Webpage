@@ -24,7 +24,7 @@
           ]
         }
     </script>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <script>
         function removeClassList(){
             document.documentElement.classList.remove('body-hidden');
@@ -46,8 +46,7 @@
             if (window.readyState !== 'loading'){
                 removeClassList();
             }else{
-                document.addEventListener('DOMContentLoaded', function() {
-                    console.log('document was not ready, removing class');
+                window.addEventListener('DOMContentLoaded', function() {
                 removeClassList();
             });
             }
@@ -257,6 +256,6 @@
             </svg>
         </a>
     </div>
-    <script src="/js/event_listener.js"></script>
+    <script src="js/event_listener.js"></script>
 </body>
 </html>
