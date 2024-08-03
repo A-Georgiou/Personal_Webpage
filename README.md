@@ -16,6 +16,7 @@ This website is purely for fun and personal enjoyment. It uses:
 ## Features
 
 - **SVG Animation**: This website uses only animated SVG's, the stylised handwriting was done by myself on my iPad Pro using Procreate which I then vectorised and created a mask to follow the filled SVG.
+- **LocalStorage Dark-Mode**: Retains preferred mode (dark-mode / light-mode) using local storage.
 
 ## Getting Started
 
