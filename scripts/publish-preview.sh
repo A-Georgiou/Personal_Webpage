@@ -39,6 +39,13 @@ rsync -a --exclude '.git' --exclude '.github' --exclude 'scripts' ./ "$staging/"
 printf 'User-agent: *\nDisallow: /\n' >"$staging/robots.txt"
 : >"$staging/.nojekyll"
 
+# The sandbox is served from a project subpath (…/personal-webpage-preview/),
+# so root-absolute references such as href="/css/styles.css" would resolve
+# against the domain root and 404. Make them relative in the published copy
+# only; the production markup is left untouched.
+find "$staging" -type f -name '*.html' -exec \
+    perl -pi -e 's{\b(href|src)="/(?!/)}{$1="}g' {} +
+
 cd "$staging"
 git init -q -b "$branch"
 git add -A

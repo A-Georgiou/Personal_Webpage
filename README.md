@@ -49,6 +49,9 @@ The preview is published to the
 repository and served at
 <https://a-georgiou.github.io/personal-webpage-preview/>. It carries a
 `robots.txt` that blocks indexing so it never competes with the live site.
+Because the sandbox is served from a project subpath, the publish script also
+rewrites root-absolute references (`href="/css/..."`) to relative ones in the
+published copy — the source markup is never modified.
 
 Publishing requires the sandbox remote (one-time setup):
 
