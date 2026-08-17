@@ -25,3 +25,33 @@ To view or edit the project locally:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/A-Georgiou/Personal_Webpage
+   ```
+
+2. **Serve it locally**:
+   ```bash
+   ./scripts/serve.sh        # http://localhost:8000
+   ```
+
+## Experimenting with New Designs
+
+`main` is deployed straight to andrewgeorgiou.co.uk, so redesigns are done on
+branches and previewed in a separate sandbox site that has no connection to the
+live domain.
+
+```bash
+git switch -c design/my-idea       # branch off main; pushes here never deploy
+./scripts/serve.sh                 # iterate locally
+./scripts/publish-preview.sh       # publish a shareable preview
+```
+
+The preview is published to the
+[personal-webpage-preview](https://github.com/A-Georgiou/personal-webpage-preview)
+repository and served at
+<https://a-georgiou.github.io/personal-webpage-preview/>. It carries a
+`robots.txt` that blocks indexing so it never competes with the live site.
+
+Publishing requires the sandbox remote (one-time setup):
+
+```bash
+git remote add preview https://github.com/A-Georgiou/personal-webpage-preview.git
+```
