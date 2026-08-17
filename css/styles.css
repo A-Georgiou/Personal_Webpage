@@ -80,11 +80,11 @@ body {
     z-index: 1;
     min-height: 100vh;
     min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
+    display: grid;
+    /* Equal tracks above and below put the signature on the vertical centre
+       line, so the links below it do not push it up. */
+    grid-template-rows: 1fr auto 1fr;
+    justify-items: center;
     padding: 2rem 1.5rem;
 }
 
@@ -100,9 +100,13 @@ body {
     border: 0;
 }
 
+.signature {
+    grid-row: 2;
+}
+
 .signature svg {
     display: block;
-    width: min(72vw, 620px);
+    width: min(60vw, 510px);
     height: auto;
 }
 
@@ -114,10 +118,13 @@ body {
 }
 
 .meta {
+    grid-row: 3;
+    align-self: start;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    padding-top: 2.75rem;
     opacity: 0;
     animation: fade-in 1.6s ease-in forwards;
     animation-delay: calc(var(--draw) * 0.78);
@@ -215,8 +222,8 @@ body {
 }
 
 @media (max-width: 600px) {
-    .stage {
-        gap: 2rem;
+    .meta {
+        padding-top: 2rem;
     }
 
     .links {
