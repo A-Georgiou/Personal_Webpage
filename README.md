@@ -24,6 +24,10 @@ This website is purely for fun and personal enjoyment. It uses:
   animation allocates nothing while running (~0.2 ms per frame at 240x80). It pauses
   when the tab is hidden and holds a single still frame when the visitor prefers
   reduced motion.
+- **Rainbow Tint**: The donut is coloured by a conic gradient clipped to the glyphs
+  and drifting slowly through the hues, so the rainbow costs nothing per frame. The
+  sweep is defined in OKLCH, which keeps every hue at the same perceived brightness
+  so no arc of the torus reads muddier than the rest.
 
 ## Getting Started
 

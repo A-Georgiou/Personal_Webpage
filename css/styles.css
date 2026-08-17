@@ -3,7 +3,7 @@
     --ink: #f4f4f4;
     --muted: #7d7d7d;
     --donut-ink: #e6edf3;
-    --donut-opacity: 0.16;
+    --donut-opacity: 0.32;
     --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --draw: 5s;
 }
@@ -36,18 +36,42 @@ body {
     margin: 0;
     padding: 0;
     font: 400 clamp(8px, 1.35vmin, 13px) / 1 var(--mono);
-    color: var(--donut-ink);
     white-space: pre;
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
+
+    /* The rainbow is a conic sweep clipped to the glyphs, so it wraps around the
+       torus without the renderer having to colour anything per character.
+       For a monochrome donut, drop this block and set `color: var(--donut-ink)`. */
+    color: transparent;
+    background-image: conic-gradient(from 210deg at 50% 50%,
+            #ff3b6b, #ff8f3f, #ffe14d, #45e39b, #35c3f3, #7b7bff, #e468ff, #ff3b6b);
+    /* Same sweep in OKLCH, where every hue lands on the same perceived
+       brightness so no arc of the torus reads muddier than the rest.
+       Browsers without OKLCH interpolation keep the hex sweep above. */
+    background-image: conic-gradient(from 210deg at 50% 50% in oklch longer hue,
+            oklch(0.8 0.17 20), oklch(0.8 0.17 380));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .donut.is-ready {
     opacity: var(--donut-opacity);
     transition: opacity 1.6s ease-in;
+    animation: hue-drift 48s linear infinite;
+}
+
+@keyframes hue-drift {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
 }
 
 /* Foreground */
@@ -228,5 +252,6 @@ body {
 
     .donut.is-ready {
         transition: none;
+        animation: none;
     }
 }
